@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
+        <title>Staged DVIA</title>
+        <link href='bootstrap.min.css' rel='stylesheet'>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+         <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,700" rel="stylesheet">
+        
+        <style>
+            body{
+                background-color:rgb(229, 206, 218);
+            }
+            
+             .container{
+                width:100vw;
+                height:100vh;
+            }
+            
+            h1{
+                margin-left:30px;
+                font-family:'Raleway', sans-serif;
+                font-weight:bold;
+            }
+            
+            #header{
+                width:100%;
+                height:20vh;
+            }
+            
+            #hair,#eye, #face,#body{
+                width:80%;
+                height:20vh;
+                margin:10px 5px 10px 20px;
+                font-family:'Raleway', sans-serif;
+                font-weight:medium;
+            }
+            
+            #tabs{
+                width:100%;
+                height:60%;
+            }
+            
+            #image{
+                margin-top:20vh;
+            }
+            
+            .hair,.eye{
+                fill:rgba(37, 209, 203, 0.5);
+            }
+            
+            .face,.body{
+                fill:rgba(216, 54, 162,0.5);
+            }
+            
+            .hairButton,.faceButton,.eyeButton,.bodyButton{
+                display:block;
+                width:200px;
+                height:50px;
+                transition:0.6s;
+                text-align:center;
+                font-size:20px;
+                fill:black;
+            }
+            /*.hairButton:hover,.faceButton:hover,.eyeButton:hover,.bodyButton:hover{*/
+            /*    fill:white;*/
+            /*}*/
+            
+          
+        </style>
+        
+    </head>
+    
+    <body>
+        <div class="container">
+           <div class="row">
+               <div id="image" class="col">
+                   <img src='hair_remover.svg'></img>
+               </div>
+               <div id="sidebar" class="col col-lg-2">
+                   <div id="header" class="row">
+                       <h1>Panasonic Beauty</h1>
+                       
+                    </div>
+                   <div id="hair"class="row">
+                         <a href="hair.html" class="hairButton">
+                            <svg id="tabs">
+                               <rect class="hair">
+                               </rect>
+                            </svg>
+                         </a>
+                   </div>
+                   <div id="face" class="row">
+                          <a href="hair.html" class="faceButton">
+                            <svg id="tabs">
+                               <rect class="face">
+                               </rect>
+                            </svg>
+                          </a>
+                    </div>
+                   <div id="eye" class="row">
+                              <a href="eye.html" class="eyeButton">
+                                 <svg id="tabs">
+                                   <rect class="eye">
+                                   </rect>
+                                 </svg>
+                              </a> 
+        
+                    </div>
+                   <div id="body" class="row">
+    
+                             <a href="body.html" class="bodyButton">
+                                <svg id="tabs">
+                                    <rect class="body">
+                                        
+                                    </rect>
+                                </svg>
+                             </a>
+                    </div>
+               </div>
+           </div>
+       </div>
+        
+    <script>
+         
+         d3.select('.hair')
+              .attr('x',0)
+              .attr('y',0)
+              .attr('width',200)
+              .attr('height',5);
+              
+        d3.select('.hairButton')
+            .append('text')
+            .text('Hair');
+             
+          d3.select('.eye')
+              .attr('x',0)
+              .attr('y',0)
+              .attr('width',200)
+              .attr('height',5);
+              
+         d3.select('.eyeButton')
+          .append('text')
+          .text('Eye');
+              
+         d3.select('.face')
+              .attr('x',0)
+              .attr('y',0)
+              .attr('width',200)
+              .attr('height',5);
+        
+        d3.select('.faceButton')
+            .append('text')
+            .text('Face');
+              
+        d3.select('.body')
+              .attr('x',0)
+              .attr('y',0)
+              .attr('width',200)
+              .attr('height',5);
+              
+        d3.select('.bodyButton')
+          .append('text')
+          .text('Body');
+
+        
+        
+          
+                
+    </script>
+        
+        
+        
+    </body>
+</html>
