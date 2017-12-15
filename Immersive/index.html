@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <title>Ageing Population</title>
+
+    <script src='https://d3js.org/d3.v4.min.js'></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Coustard" rel="stylesheet">
+    <<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed" rel="stylesheet">
+
+   <style>
+        html, body, #wrapper {
+            width: 100%;
+            height: 100%;
+        	padding: 0px;
+        	margin: 0px;
+        	/*background-color:black;*/
+        }
+        header{
+            background-color:white;
+        }
+
+        #map {
+          position:relative;
+          width: 100%;
+          height: 100%;
+          margin: auto auto;
+        }
+
+        svg {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+        }
+
+        .hidden {
+        	display: none;
+        }
+        
+
+        #overlay {
+            position: fixed;
+            bottom: 10vw;
+            left: 15vw;
+            width: 60vw;
+            height: 50vh;
+           
+            background-color: rgba(38, 16, 1,0.8);
+            min-height: 200px;
+        }
+        
+        #circle_col{
+            width:100%;
+            height:30vh;
+        }
+        
+        #key {
+                margin-top:80px;
+                margin-right:50px;
+                list-style:disc inside;
+                color:white;
+                font-size: 20px;
+                /*font-family:'Dosis', sans-serif;*/
+            }
+            
+            
+        #key span {color:white;}
+        #key .white {color: rgba(242, 234, 232,0.7);} 
+        #key .grey  {color: gray;}
+        #key .red  {color: red;}
+        
+        
+        #circle, #trend{
+            width:100%;
+            height:100%;
+        }
+        
+        text{
+            z-index:1;
+        }
+        
+        #trend{
+            margin-top:20px;
+            margin-bottom:20px;
+            margin-left:10px;
+        }
+        
+        img{
+            margin-top:100px;
+            margin-left:70px;
+        }
+        
+       h1{
+           font-family:'Coustard';
+          
+           
+       }
+       h3, p{
+           font-family:'Fira Sans Condensed', sans-serif;;
+           font-weight:light;
+           color:#efedea;
+       }
+       
+       h3{
+           font-size:50px;
+            font-weight:light;
+       }
+       p{
+           font-size:20px;
+            font-weight:Extra-Light;
+       }
+       #intro{
+           left:20px;
+           top:20px;
+           right:20px;
+       }
+       
+       #link{
+           font-family:'Coustard';
+           font-size:30px;
+           margin-left:22vw;
+           margin-top:10vh;
+       }
+       
+       
+        
+
+    </style>
+    
+
+    
+</head>
+
+
+<body>
+    <header>
+        <div id='header'><h1>Which Ones are the <span style='color:rgb(198, 27, 27)'> Top</span> Ageing Populations?</h1></div>
+ 
+    </header>
+    
+    
+    <div id='wrapper'>
+        <div id='map'></div>
+        <div id='overlay'>
+            <div class='container'>
+                <div class='row'>
+                
+                    <div id='intro' class='col'>
+                        <h3>Population Ageing</h3>
+                        <p>According to the United Nation, the world’s population is ageing: virtually every country in the world is experiencing growth in the number and proportion of older persons in their population. 
+                           Population ageing is poised to become one of the most significant social transformations of the twenty-first century, with implications for nearly all sectors of society, 
+                           including labour and financial markets, the demand for goods and services, such as housing, transportation and social protection,
+                           as well as family structures and intergenerational ties. </p>
+                    </div>
+                </div>
+                <div class='row'>
+                    <a id='link' href='datadisplay.html'>
+                        Let's Find Out!
+                      
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic2hpeTkxOCIsImEiOiJjajl6eW16ZTE4dXIyMzJzNHVpaGxhZmh4In0.K8ys9-jUCZma5DR_JlkxIA';
+            var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/dark-v9',
+            center: [15.2551, 54.5260], 
+            zoom: 1.2
+        });
+        
+
+        d3.json('countries.json', function(err, geojson) {
+            // console.log(geojson);
+            var geojson=geojson.features;
+            
+            d3.csv('aging_pop.csv',function(err, ageingPop){
+                
+            //   console.log(ageingPop);
+               
+              //find out the 2016 rate
+              for (var i=0;i<geojson.length;i++){
+                   
+                  for (var m=0;m<ageingPop.length;m++){
+                       
+                      if(geojson[i].properties.ADM0_A3==ageingPop[m].Id){
+                       
+                         geojson[i].ageingPop=ageingPop[m]; 
+                      }
+                  }
+              }
+               
+                
+                d3.csv('GDP.csv',function(err,gdp){
+                    // console.log(gdp);
+                    
+                    for(var i=0;i<geojson.length;i++){
+                        
+                        for(var k=0;k<gdp.length;k++){
+                            
+                            if(geojson[i].properties.ADM0_A3==gdp[k].Id){
+                            
+                              geojson[i].gdp=gdp[k];
+                            }
+                        }
+                    }
+                     draw(geojson);
+                })
+            
+                
+            })
+            
+            
+        });
+        
+        
+        
+        function draw(geojson){
+            
+            // console.log(geojson);
+        
+            map.addControl(new mapboxgl.NavigationControl(),'bottom-right');
+        
+            var container = map.getCanvasContainer()
+            var svg = d3.select(container).append('svg')
+        
+        	var transform = d3.geoTransform({point: projectPoint}); 
+        	var path = d3.geoPath().projection(transform); 
+    
+            
+         	var featureElement = svg.selectAll('path')
+        		.data(geojson)
+        		.enter()
+                .append('path')
+                .attr('d', d3.geoPath().projection(transform))
+                .attr('stroke', 'rgb(163, 157, 156)')
+                 .attr('strok-width','none')
+                 .attr('fill','#494846');
+              
+              
+                
+
+        
+            function update() {
+                featureElement.attr('d', path);
+            }
+        
+            map.on('viewreset', update)
+            map.on('movestart', function(){
+        		svg.classed('hidden', true);
+        	});
+            map.on('rotate', function(){
+        		svg.classed('hidden', true);
+        	});
+            map.on('moveend', function(){
+        		update();
+        		svg.classed('hidden', false);
+        	})
+        
+            update()
+        
+        	function projectPoint(lon, lat) {
+                var point = map.project(new mapboxgl.LngLat(lon, lat));
+        		this.stream.point(point.x, point.y);
+        	}
+        	
+        	
+        	var circle=d3.select('#circle')
+        	             .append('circle')
+        	             .attr('cx',200)
+        	             .attr('cy',148)
+        	             .attr('r',115)
+        	             .style('fill','#e2e1e0')
+        	             .style('stroke-width','8');
+        	
+            
+        	d3.select('.country').text("Let's Find Out");
+        	
+        	
+        	
+        	  
+         }
+   
+    </script>
+</body>
