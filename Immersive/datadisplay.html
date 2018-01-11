@@ -3,7 +3,7 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <title>Ageing Population</title>
-
+    <script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
     <script src='https://d3js.org/d3.v4.min.js'></script>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.0/mapbox-gl.css' rel='stylesheet' />
@@ -53,12 +53,32 @@
         }
         
         #key {
-                margin-top:80px;
-                margin-right:50px;
+                position:absolute;
+                top:30%;
+                /*margin-top:80px;*/
+                /*margin-right:50px;*/
                 list-style:disc inside;
                 color:white;
                 font-size: 20px;
-                /*font-family:'Dosis', sans-serif;*/
+            }
+            
+        /*large screens*/
+         @media (min-width:1024){
+                #key{
+                    font-size:20px;
+                }
+            }
+        /*medium screens*/
+        @media (min-width:768px) and (max-width: 1023px){
+               #key{
+                   font-size:15px;
+                }
+            }
+        /*small screens*/
+        @media (max-width: 767px){
+                body{
+                    font-size:10px;
+                }
             }
             
             
@@ -84,8 +104,8 @@
         }
         
         img{
-            margin-top:100px;
-            margin-left:70px;
+            position:absolute;
+            top:30%;
         }
         
        h1{
@@ -123,13 +143,12 @@
                     </div> 
                     <div id='circle_col' class='col'>
                         <svg id='circle'>
-                            <text class='country' x="53%" y="35%" alignment-baseline="middle" text-anchor="middle"></text>
-                            <text class='ageing'  x="53%" y="55%"  alighment-baseline="middle" text-anchor='middle'></text>
-                            <text class='GDP'  x="53%" y="65%"  alighment-baseline="middle" text-anchor='middle'></text>
+                            <text class='country' x="50%" y="35%" alignment-baseline="middle" text-anchor="middle"></text>
+                            <text class='ageing'  x="50%" y="55%"  alighment-baseline="middle" text-anchor='middle'></text>
+                            <text class='GDP'  x="50%" y="65%"  alighment-baseline="middle" text-anchor='middle'></text>
                         </svg>
                       </div>
                        <div class='col'>
-                        <!--<svg id='trend' style='width:100%; height:80%'></svg>-->
                         <img src='pop_gradient.svg'></img>
                     </div>
                 </div>
@@ -317,21 +336,8 @@
                  }
             
                 });
-                 
-                // .on('mouseout', function() {
-                //     d3.select(this).attr('fill', 'darkred');
-                //     d3.select('#hover').attr('fill-opacity', 0);
-                // })
-                // .on('mousemove', function(d) {
-                //     d3.select('#hover')
-                //         .attr('x', function() { return d3.mouse(this)[0] + 20; })
-                //         .attr('y', function() { return d3.mouse(this)[1] + 10; });
-                //}
                 
-            
 
-        //     svg.append('text')
-        //         .attr('id', 'hover');
         
             function update() {
                 featureElement.attr('d', path);
@@ -359,26 +365,12 @@
         	
         	var circle=d3.select('#circle')
         	             .append('circle')
-        	             .attr('cx',200)
-        	             .attr('cy',148)
-        	             .attr('r',115)
+        	             .attr('cx',$('#circle').width()/2)
+        	             .attr('cy',$('#circle').height()/2)
+        	             .attr('r',100)
         	             .style('fill','none')
-        	           //  .style('stroke','rgba(242, 234, 232,0.7)')
         	             .style('stroke-width','8');
-        	             
-        //   d3.select('.start').text('Hover Over Countries!')
-        //                       .style('fill','white')
-        //                       .style('font-family','Coustard')
-        //                       .style('font-size',30);
-        	
-        	
-            
-        	d3.select('#trend').append('g').attr('id','dots');
-        	
-        	d3.select('#trend').append('g').attr('id','label');
-        	
-        	
-        	
+
         	  
         }
    
