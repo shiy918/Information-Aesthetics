@@ -17,8 +17,54 @@
             height: 100%;
         	padding: 0px;
         	margin: 0px;
-        	/*background-color:black;*/
         }
+        
+        /*large screens*/
+         @media (min-width:1024px){
+                p{
+                    font-size:20px;
+                }
+                
+                #intro{
+                    left:20px;
+                }
+                #link{
+                    font-size:30px;
+                    margin-left:22vw;
+                    margin-top:10vh;
+                }
+            }
+        /*medium screens*/
+        @media (min-width:768px) and (max-width: 1023px){
+               p{
+                   font-size:15px;
+                }
+                
+                #intro{
+                    left:15px;
+                }
+                #link{
+                    font-size:20px;
+                    margin-left:18vw;
+                    margin-top:5vh;
+                }
+            }
+        /*small screens*/
+        @media (max-width: 767px){
+                p{
+                    font-size:10px;
+                }
+                
+                #intro{
+                    left:5px;
+                }
+                #link{
+                    font-size:15px;
+                    margin-left:14vw;
+                    margin-top:2vh;
+                }
+            }
+        
         header{
             background-color:white;
         }
@@ -95,9 +141,9 @@
         
        h1{
            font-family:'Coustard';
-          
-           
+         
        }
+       
        h3, p{
            font-family:'Fira Sans Condensed', sans-serif;;
            font-weight:light;
@@ -109,20 +155,15 @@
             font-weight:light;
        }
        p{
-           font-size:20px;
             font-weight:Extra-Light;
        }
        #intro{
-           left:20px;
            top:20px;
-           right:20px;
        }
        
        #link{
            font-family:'Coustard';
-           font-size:30px;
-           margin-left:22vw;
-           margin-top:10vh;
+          
        }
        
        
