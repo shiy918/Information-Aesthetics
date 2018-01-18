@@ -315,19 +315,6 @@
                                    d3.select('.GDP').text('GDP Ranking:'+' '+d.gdp.Ranking).style('fill','#e2e1e0');
                                  }
                                  d3.select('#circle circle').style('stroke','rgb(198, 27, 27)');
-                                 
-                                
-                                //draw the dots
-                                 dots.selectAll('circle')
-                                     .data(list)
-                                     .enter()
-                                     .append('circle')
-                                     .attr('cx',function(d,i){return x(i);})
-                                     .attr('cy',function(d,i){return 200-y(list[i]); })
-                                     .attr('r',3)
-                                     .attr('translate','transform(50,50)')
-                                     .style('fill','rgb(198, 27, 27)');
-                                 
                               
                            }
                          
