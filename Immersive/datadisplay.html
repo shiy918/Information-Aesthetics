@@ -40,16 +40,15 @@
             position: fixed;
             bottom: 5vw;
             left: 15vw;
-            width: 70vw;
-            height: 30vh;
-           
+            /*width: 70vw;*/
+            /*height: 30vh;*/
             background-color: rgba(38, 16, 1,0.8);
             min-height: 200px;
         }
         
         #circle_col{
             width:100%;
-            height:30vh;
+            height:40vh;
         }
         
         #key {
@@ -62,31 +61,54 @@
         /*large screens*/
          @media (min-width:1024px){
                 #key{
-                    font-size:20px;
+                    font-size:12px;
                 }
                 
                 .ageing .GDP{
                     font-size:15px;
                 }
+                
+                 h1{
+                    font-size:30px;
+                }
+                #overlay{
+                    width:70vw;
+                    height:40vh;
+                }
             }
         /*medium screens*/
         @media (min-width:768px) and (max-width: 1023px){
                #key{
-                   font-size:15px;
+                   font-size:10px;
                 }
                
                .ageing .GDP{
                    font-size:10px;
                }
+                h1{
+                    font-size:25px;
+                }
+                #overlay{
+                    width:70vw;
+                    height:40vh;
+                }
+               
             }
         /*small screens*/
         @media (max-width: 767px){
                 #key{
-                    font-size:10px;
+                    font-size:8px;
                 }
                 
                 .ageing .GDP{
                     font-size:10px;
+                }
+                h1{
+                   font-size:15px;
+                }
+                #overlay{
+                    width:70vw;
+                    height:40vh;
                 }
             }
             

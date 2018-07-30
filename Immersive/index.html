@@ -21,48 +21,81 @@
         
         /*large screens*/
          @media (min-width:1024px){
-                p{
-                    font-size:20px;
-                }
-                
-                #intro{
-                    left:20px;
-                }
-                #link{
+                h3{
                     font-size:30px;
-                    margin-left:22vw;
-                    margin-top:10vh;
                 }
-            }
-        /*medium screens*/
-        @media (min-width:768px) and (max-width: 1023px){
-               p{
-                   font-size:15px;
+                p{
+                    font-size:15px;
                 }
                 
                 #intro{
                     left:15px;
                 }
                 #link{
+                    font-size:30px;
+                    margin-left:22vw;
+                    margin-top:10vh;
+                }
+                
+                #overlay{
+                    width:70vw;
+                    height:60vh;
+                }
+                
+                h1{
+                   font-size:30px;
+                }
+            }
+        /*medium screens*/
+        @media (min-width:768px) and (max-width: 1023px){
+               h3{
+                   font-size:20px;
+               }
+               p{
+                   font-size:15px;
+                }
+                
+                #intro{
+                    left:10px;
+                }
+                #link{
                     font-size:20px;
                     margin-left:18vw;
                     margin-top:5vh;
                 }
+                #overlay{
+                    width:60vw;
+                    height:60vh;
+                }
+                h1{
+                    font-size:25px;
+                }
             }
         /*small screens*/
         @media (max-width: 767px){
+                h3{
+                    font-size:15px;
+                }
                 p{
                     font-size:10px;
                 }
                 
                 #intro{
-                    left:5px;
+                    left:2px;
                 }
                 #link{
                     font-size:15px;
                     margin-left:14vw;
                     margin-top:2vh;
                 }
+                #overlay{
+                    width:50vw;
+                    height:70vh;
+                }
+                h1{
+                    font-size:15px;
+                }
+                
             }
         
         header{
@@ -91,8 +124,8 @@
             position: fixed;
             bottom: 10vw;
             left: 15vw;
-            width: 60vw;
-            height: 50vh;
+            /*width: 60vw;*/
+            /*height: 50vh;*/
            
             background-color: rgba(38, 16, 1,0.8);
             min-height: 200px;
@@ -145,13 +178,11 @@
        }
        
        h3, p{
-           font-family:'Fira Sans Condensed', sans-serif;;
-           font-weight:light;
+           font-family:'Fira Sans Condensed', sans-serif;
            color:#efedea;
        }
        
        h3{
-           font-size:50px;
             font-weight:light;
        }
        p{
@@ -200,7 +231,6 @@
                 <div class='row'>
                     <a id='link' href='datadisplay.html'>
                         Let's Find Out!
-                      
                     </a>
                 </div>
             </div>
